@@ -30,7 +30,7 @@ public class SocketServer {
             String message;
             // Mantém a conexão aberta enquanto o cliente envia mensagens
             while ((message = reader.readLine()) != null) {
-                System.out.println(message);
+                System.out.println("Pong: " + message);
             }
             // O loop será quebrado quando o cliente fechar a conexão
             System.out.println("Pong desconectado.");
