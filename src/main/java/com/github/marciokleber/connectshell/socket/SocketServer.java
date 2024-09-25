@@ -1,8 +1,6 @@
 package com.github.marciokleber.connectshell.socket;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
+import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
 
@@ -28,20 +26,13 @@ public class SocketServer {
     }
 
     private void handleClient(Socket clientSocket) {
-        try (InputStream input = clientSocket.getInputStream();
-             OutputStream output = clientSocket.getOutputStream()) {
+        try {
+            InputStreamReader inputStreamReader = new InputStreamReader(clientSocket.getInputStream());
+            BufferedReader reader = new BufferedReader(inputStreamReader);
 
-            byte[] buffer = new byte[1024];
-            int bytesRead = input.read(buffer);
-
-            String receivedMessage = new String(buffer, 0, bytesRead);
-            System.out.println("Mensagem recebida: " + receivedMessage);
-
-            String responseMessage = "Servidor recebeu: " + receivedMessage;
-            output.write(responseMessage.getBytes());
-
+            System.out.println("Mensagem recebida: " + reader.readLine());
         } catch (IOException e) {
-            System.out.println("Erro ao lidar com o cliente: " + e.getMessage());
+            System.out.println("Erro ao processar a mensagem: " + e.getMessage());
         }
     }
 }

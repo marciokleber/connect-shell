@@ -9,14 +9,13 @@ public class ConnectShellApplication {
 
     public static void main(String[] args) {
         System.out.println("Aplicação iniciada com sucesso.");
+
         new Thread(() -> {
             SocketServer socketServer = new SocketServer(3000);  // Porta do servidor
             socketServer.start();
         }).start();
+
         SpringApplication.run(ConnectShellApplication.class, args);
-
-
-
     }
 
 }
