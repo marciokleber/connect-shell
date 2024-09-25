@@ -26,13 +26,23 @@ public class SocketServer {
     }
 
     private void handleClient(Socket clientSocket) {
-        try {
-            InputStreamReader inputStreamReader = new InputStreamReader(clientSocket.getInputStream());
-            BufferedReader reader = new BufferedReader(inputStreamReader);
-
-            System.out.println("Mensagem recebida: " + reader.readLine());
+        try (BufferedReader reader = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()))) {
+            String message;
+            // Mantém a conexão aberta enquanto o cliente envia mensagens
+            while ((message = reader.readLine()) != null) {
+                System.out.println(message);
+            }
+            // O loop será quebrado quando o cliente fechar a conexão
+            System.out.println("Ping desconectado.");
         } catch (IOException e) {
             System.out.println("Erro ao processar a mensagem: " + e.getMessage());
+        } finally {
+            try {
+                // Certifica-se de que o socket do cliente seja fechado após a desconexão
+                clientSocket.close();
+            } catch (IOException e) {
+                System.out.println("Erro ao fechar a conexão do cliente: " + e.getMessage());
+            }
         }
     }
 }
