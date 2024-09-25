@@ -8,7 +8,7 @@ import java.net.Socket;
 
 @Component
 public class SocketClient {
-    Socket socket = new Socket("localhost", 3000);
+    Socket socket = new Socket("localhost", 6000);
     PrintStream out = new PrintStream(socket.getOutputStream());
 
     public SocketClient() throws IOException {

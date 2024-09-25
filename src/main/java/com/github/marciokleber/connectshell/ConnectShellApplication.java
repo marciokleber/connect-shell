@@ -11,7 +11,7 @@ public class ConnectShellApplication {
         System.out.println("Aplicação iniciada com sucesso.");
 
         new Thread(() -> {
-            SocketServer socketServer = new SocketServer(6000);  // Porta do servidor
+            SocketServer socketServer = new SocketServer(3000);  // Porta do servidor
             socketServer.start();
         }).start();
 
