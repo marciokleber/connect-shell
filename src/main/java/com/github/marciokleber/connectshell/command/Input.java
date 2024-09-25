@@ -14,9 +14,6 @@ public class Input {
 
     @ShellMethod("Processa a mensagem recebida diretamente.")
     public void m(@ShellOption(defaultValue = "") String mensagem) {
-//        if (mensagem.isBlank()) {
-//            throw new NullPointerException("Por favor, insira uma mensagem.");
-//        }
         socketClient.send(mensagem);
     }
 }
