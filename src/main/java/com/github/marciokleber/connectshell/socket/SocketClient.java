@@ -7,14 +7,11 @@ import java.io.PrintStream;
 import java.net.Socket;
 import java.util.Scanner;
 
-@Component
 public class SocketClient {
     private Socket socket;
     private PrintStream out;
 
-    public SocketClient() throws IOException {
-        connectToServer();
-    }
+    public SocketClient() throws IOException {}
 
     public void connectToServer() {
 
