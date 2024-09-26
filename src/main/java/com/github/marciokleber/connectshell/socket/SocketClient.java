@@ -6,15 +6,15 @@ import java.net.Socket;
 import java.util.Scanner;
 
 public class SocketClient {
-
     private Socket socket;
     private PrintStream out;
 
-    public SocketClient() throws IOException {
-    }
+    public SocketClient() throws IOException {}
 
     public void connectToServer() {
+
         Scanner scanner = new Scanner(System.in);
+
         while (socket == null || socket.isClosed()) {
             try {
                 System.out.println("Conectando...");
@@ -50,11 +50,10 @@ public class SocketClient {
             }
         }
     }
-
     public void closeConnection() {
         try {
             if (out != null) {
-                out.close(); // Fecha o PrintStream
+                out.close();
                 System.exit(0);
             }
             if (socket != null && !socket.isClosed()) {
